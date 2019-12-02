@@ -8,7 +8,7 @@ class LinebotController < ApplicationController
   protect_from_forgery :except => [:callback]
   
   def callback
-    body = request.boby.read
+    body = request.body.read
     signature request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
       error 400 do 'Bad Request' end
@@ -24,7 +24,7 @@ class LinebotController < ApplicationController
           # event.message['text']:ユーザーから送られたメッセージ
           input = event.message['text']
           url = "https://www.drk7.jp/weather/xml/13.xml"
-          xml = open(url).read.toutf8
+          xml = open( url ).read.toutf8
           doc = REXML::Document.new(xml)
           xpath = 'weatherforecast/pref/area[4]/'
           # 当日朝のメッセージの送信の下限値は20%としているが、明日・明後日雨が降るかどうかの下限値は30%
