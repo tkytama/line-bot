@@ -6,13 +6,13 @@ task :update_feed => :environment do
   require 'rexml/document'
   
   client ||= Line::Bot::Client.new { |config|
-  　config.channel_serect = ENV["LINE_CHANNEL_SECRET"]
+  　config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
   　config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
   }
   # 使用したxmlデータ（毎日朝6時更新）
   url = "http://www.drk7.jp/weather/xml/13.xml"
   # xmlデータの整形
-  xml = open(url).read.toutf8
+  xml = open( url ).read.toutf8
   doc = REXML::Document.new(xml)
   # パスの共通部分を変数化（area[4]は「東京地方」を指定）
   xpath = 'weatherforecast/pref/area[4]/info/rainfallchance/'
