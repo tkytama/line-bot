@@ -17,7 +17,7 @@ class LinebotController < ApplicationController
     events.each { |event|
       case event
         # メッセージが送信された場合の対応
-      when Line:Bot::Event::Message
+      when Line::Bot::Event::Message
         case event.type
           # ユーザーからテキスト形式のメッセージが送られてきた場合
         when Line::Bot::Event::MessageType::Text
@@ -53,7 +53,7 @@ class LinebotController < ApplicationController
                 "明後日の天気だよね。\n明後日は雨が降りそう...\n当日の朝に雨が降りそうだったら教えるね！"
             else
               push =
-                "明後日の天気？\n"明後日は雨は降らない予定だよ(^^)\n当日の朝に雨が降りそうだったら教えるね！"
+                "明後日の天気？\n明後日は雨は降らない予定だよ(^^)\n当日の朝に雨が降りそうだったら教えるね！"
             end
           when /.*(かわいい|可愛い|カワイイ|きれい|綺麗|キレイ|素敵|ステキ|すてき|面白い|おもしろい|ありがと|すごい|スゴイ|スゴい|好き|頑張|がんば|ガンバ).*/
             push =
